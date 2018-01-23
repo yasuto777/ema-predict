@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+    python:
+        build: .
+        working_dir: /usr/src/emargency
+        command: python emargency/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/usr/src/emargency
+
+    proxy:
+        image: nginx:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./setup/nginx:/etc/nginx:ro
+            - ./log/nginx:/var/log/nginx:rw
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            TZ: Asia/Tokyo
+        links:
+            - python:python
