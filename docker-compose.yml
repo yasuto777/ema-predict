@@ -1,12 +1,26 @@
 version: '3.2'
 
 services:
+    db:
+        build: ./setup/postgres
+        restart: always
+        volumes:
+            - /var/lib/postgres/data:/var/lib/postgres/data
+            - /etc/localtime:/etc/localtime:ro
+        ports:
+            - 15432:5432
+
     python:
         build: .
         working_dir: /usr/src/emargency
         command: python emargency/manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/usr/src/emargency
+            - /etc/localtime:/etc/localtime:ro
+        links:
+            - db:db
+        depends_on:
+            - db
 
     proxy:
         image: nginx:latest
