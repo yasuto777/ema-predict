@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
     db:
-        build: ./setup/postgres
+        image: postgres
         restart: always
         volumes:
             - /var/lib/postgres/data:/var/lib/postgres/data
