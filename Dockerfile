@@ -1,4 +1,4 @@
 FROM python:alpine
 
-WORKDIR /usr/src/emargency
+WORKDIR /usr/src/app
 RUN pip install django
