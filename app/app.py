@@ -5,8 +5,8 @@ app = Flask(__name__)
 sockets = Sockets(app)
 
 @app.route('/')
-def hello():
-    return render_template('hello.html', title='this is title', name='souma')
+def index():
+    return render_template('index.html', title='EMArgency')
 
 @sockets.route('/echo')
 def echo_socket(ws):
