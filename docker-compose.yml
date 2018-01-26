@@ -13,7 +13,7 @@ services:
     python:
         build: .
         working_dir: /usr/src/app
-        command: python app/manage.py runserver 0.0.0.0:8000
+        # command: python app/manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/usr/src/app
             - /etc/localtime:/etc/localtime:ro
