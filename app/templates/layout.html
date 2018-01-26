@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="/static/semantic.css">
+        <style>
+        body {
+            width: 100%;
+            height: calc(100% - 4em);
+        }
+        header {
+            height: 4em;
+        }
+        .main.container {
+            margin-top: 7em;
+        }
+        </style>
+        <script src="/static/jquery-3.3.1.min.js"></script>
+        <script src="/static/semantic.js"></script>
+        <script>
+            let host = "ws://127.0.0.1:8000/echo";
+            let socket = new WebSocket(host);
+
+            socket.onmessage = function(message) {
+                $('body').append("<li>" + message.data + "</li>")
+                console.log(message.data);
+            }
+        </script>
+    </head>
+    <body>
+        <header class="ui pointing menu inverted fixed">
+            <div class="ui container">
+                <a class="item active" href="#">HOME</a>
+                <a class="item" href="#">Item1</a>
+                <a class="item" href="#">Item2</a>
+                <!-- div class="right menu">
+                    <div class="ui transparent icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div -->
+            </div>
+        </header>
+
+        <div class="ui main container">
+            {% block content %}
+            <!-- main contents -->
+            {% endblock %}
+        </div>
+    </body>
+</html>
+
