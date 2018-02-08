@@ -8,14 +8,14 @@ services:
             - /var/lib/postgres/data:/var/lib/postgres/data
             - /etc/localtime:/etc/localtime:ro
         ports:
-            - 15432:5432
+            - 5432:5432
 
     python:
         build: .
-        working_dir: /usr/src/app
-        command: python app/app.py
+        working_dir: /var/www/app/app
+        command: gunicorn app:app -b 0.0.0.0:8000 --config gunicorn_conf.py
         volumes:
-            - .:/usr/src/app
+            - .:/var/www/app
             - /etc/localtime:/etc/localtime:ro
         links:
             - db:db

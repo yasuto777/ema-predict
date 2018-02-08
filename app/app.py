@@ -6,7 +6,7 @@ sockets = Sockets(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title='EMArgency')
+    return render_template('index.html', title='EMA-predict')
 
 @sockets.route('/echo')
 def echo_socket(ws):
